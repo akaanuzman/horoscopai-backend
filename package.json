@@ -12,7 +12,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.8",
+    "@types/whatwg-url": "^11.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.4.3",
+    "whatwg-url": "^14.0.0"
   }
 }
