@@ -84,5 +84,23 @@ export const RouteConstants = {
             /** @value /getMemberships @general /admin/membership/getMemberships */
             GET_MEMBERSHIPS: "/getMemberships",
         },
+
+        /** 
+         * This is the route for the horsocopes
+         * @value /user @general /admin/horoscope */
+        HOROSCOPE: {
+            /** @value /admin/horoscope */
+            BASE: "/horoscope",
+            /** @value /addHoroscope @general /admin/horoscope/addHoroscope */
+            ADD_HOROSCOPE: "/addHoroscope",
+            /** @value /addHoroscope @general /admin/horoscope/addHoroscopesScript */
+            ADD_HOROSCOPES_SCRIPT: "/addHoroscopesScript",
+            /** @value /updateHoroscope  @general /admin/horoscope/updateHoroscope */
+            UPDATE_HOROSCOPE: "/updateHoroscope",
+            /** @value /deleteHoroscope @general /admin/horoscope/deleteHoroscope */
+            DELETE_HOROSCOPE: "/deleteHoroscope",
+            /** @value /getHoroscopes @general /admin/horoscope/getHoroscopes */
+            GET_HOROSCOPES: "/getHoroscopes",
+        }
     },
 };

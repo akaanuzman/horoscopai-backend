@@ -82,4 +82,20 @@ export const ErrorConstants = {
         /** No memberships found */
         noMembershipsFound: "No memberships found"
     },
+
+    /** @description This is the error constants for the horoscope */
+    horoscope: {
+        /** Please provide a horoscope name */
+        emptyHoroscopeName: "Please provide a horoscope name",
+        /** Please provide a started date range */
+        emptyStartedDateRange: "Please provide a started date range",
+        /** Please provide an ended date range */
+        emptyEndedDateRange: "Please provide an ended date range",
+        /** Please provide a horoscope ID */
+        emptyHoroscopeId: "Please provide a horoscope ID",
+        /** Horoscope not found */
+        horoscopeNotFound: "Horoscope not found",
+        /** No horoscopes found */
+        noHoroscopesFound: "No horoscopes found"
+    },
 }
