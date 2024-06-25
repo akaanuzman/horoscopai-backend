@@ -115,6 +115,9 @@ UserScheme.methods.generateJwtFromUser = function (this: IUser) {
     return token;
 };
 
+UserScheme.methods.findUserHoroscope = async function (this: IUser) {
+}
+
 UserScheme.methods.getResetPasswordTokenFromUser = function () {
     const randomHexString = crypto.randomBytes(16).toString("hex")
     const resetPasswordToken = crypto

@@ -4,6 +4,7 @@ import { RouteConstants } from "./src/constants/route.constants";
 import { config } from "./src/config/config";
 import router from "./src/routes";
 import DatabaseHelper from "./src/helpers/database/database.helper";
+import { notFoundMiddleware } from "./src/middlewares/404.middleware";
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(
 
 // Import all API routes
 app.use(config.apiEndpointWithVersion, router);
+
+// 404 Middleware for not found routes
+app.get(RouteConstants.ALL_ROUTES, notFoundMiddleware);
 
 // App is listening this method
 app.listen(config.port, async () => {
