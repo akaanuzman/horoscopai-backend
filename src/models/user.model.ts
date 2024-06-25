@@ -85,8 +85,8 @@ const UserScheme = new mongoose.Schema({
     membership: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Membership",
-        // required: true,
-        // default: process.env.MEMBERSHIP_FREE_ID
+        required: true,
+        default: process.env.MEMBERSHIP_FREE_ID
     },
     role: {
         type: mongoose.Schema.Types.ObjectId,
