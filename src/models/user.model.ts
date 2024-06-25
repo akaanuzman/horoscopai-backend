@@ -91,8 +91,8 @@ const UserScheme = new mongoose.Schema({
     role: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role",
-        // required: true,
-        // default: process.env.ROLE_USER_ID
+        required: true,
+        default: process.env.ROLE_USER_ID
     },
     token: {
         type: String

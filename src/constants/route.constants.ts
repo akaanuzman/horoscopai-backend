@@ -49,6 +49,40 @@ export const RouteConstants = {
             RESET_PASSWORD: "/resetPassword",
             /** @value /tokenControl @general /auth/user/tokenControl */
             TOKEN_CONTROL: "/tokenControl",
-        }
+        },
+    },
+
+    /** This is the route for the admin */
+    ADMIN: {
+        /** @value /admin */
+        BASE: "/admin",
+
+        /** 
+         * This is the route for the roles
+         * @value /login @general /admin/role */
+        ROLE: {
+            /** @value /admin/role */
+            BASE: "/role",
+            /** @value /addRole @general /admin/role/addRole */
+            ADD_ROLE: "/addRole",
+            /** @value /deleteRole @general /admin/role/deleteRole */
+            DELETE_ROLE: "/deleteRole",
+            /** @value /getRoles @general /admin/role/getRoles */
+            GET_ROLES: "/getRoles",
+        },
+
+        /** 
+         * This is the route for the memberships
+         * @value /membership @general /admin/membership */
+        MEMBERSHIP: {
+            /** @value /admin/membership */
+            BASE: "/membership",
+            /** @value /addMembership @general /admin/membership/addMembership */
+            ADD_MEMBERSHIP: "/addMembership",
+            /** @value /deleteMembership @general /admin/membership/deleteMembership */
+            DELETE_MEMBERSHIP: "/deleteMembership",
+            /** @value /getMemberships @general /admin/membership/getMemberships */
+            GET_MEMBERSHIPS: "/getMemberships",
+        },
     },
 };
