@@ -19,4 +19,36 @@ export const RouteConstants = {
         /** @value  uploads/ */
         INTERNAL: "uploads/",
     },
+
+    /** This is the route for the authentication */
+    AUTH: {
+        /** @value /auth */
+        BASE: "/auth",
+
+        /** @value /login @general /auth/admin */
+        ADMIN: {
+            /** @value /auth/admin */
+            BASE: "/admin",
+            /** @value /auth/admin/login @general /auth/admin/login */
+            LOGIN: "/login",
+            /** @value /auth/admin/register @general /auth/admin/register */
+            REGISTER: "/register",
+        },
+
+        /** @value /login @general /auth/user */
+        USER: {
+            /** @value /auth/user */
+            BASE: "/user",
+            /** @value /login @general /auth/user/login */
+            LOGIN: "/login",
+            /** @value /register @general /auth/user/register */
+            REGISTER: "/register",
+            /** @value /forgotPassword @general /auth/user/forgotPassword */
+            FORGOT_PASSWORD: "/forgotPassword",
+            /** @value /resetPassword @general /auth/user/resetPassword */
+            RESET_PASSWORD: "/resetPassword",
+            /** @value /tokenControl @general /auth/user/tokenControl */
+            TOKEN_CONTROL: "/tokenControl",
+        }
+    },
 };

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "mongoose": "^8.4.3",
     "whatwg-url": "^14.0.0"
