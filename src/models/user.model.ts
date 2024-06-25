@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import Horoscope from "./horoscope.model";
 
 interface IUser extends Document {
     fullName: string;
@@ -22,7 +23,9 @@ interface IUser extends Document {
     token?: string;
 
     generateJwtFromUser: () => string;
+    findUserHoroscope: () => Promise<mongoose.Schema.Types.ObjectId | null>;
     getResetPasswordTokenFromUser: () => string;
+    calculateAge: () => number;
 }
 
 const UserScheme = new mongoose.Schema({
@@ -99,6 +102,11 @@ const UserScheme = new mongoose.Schema({
     },
 });
 
+/**
+ * @description Generate JWT token from user object
+ * @param this IUser object
+ * @returns JWT token
+ */
 UserScheme.methods.generateJwtFromUser = function (this: IUser) {
     const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
 
@@ -115,9 +123,52 @@ UserScheme.methods.generateJwtFromUser = function (this: IUser) {
     return token;
 };
 
-UserScheme.methods.findUserHoroscope = async function (this: IUser) {
+/**
+ * 
+ * @param this IUser object
+ * @description Find user horoscope from birthday and add it to user object
+ * @returns Horoscope ID or null if no match is found
+ */
+UserScheme.methods.findUserHoroscope = async function (this: IUser): Promise<mongoose.Types.ObjectId | null> {
+    const date = this.birthday;
+    const monthDay = date.toISOString().slice(5, 10); // Extract MM-DD format
+    const horoscopes = await Horoscope.find();
+
+    if (!horoscopes || horoscopes === undefined) return null;
+
+    for (const horoscope of horoscopes) {
+        if ((monthDay >= horoscope.startedDateRange && monthDay <= horoscope.endedDateRange) ||
+            (horoscope.startedDateRange > horoscope.endedDateRange &&
+                (monthDay >= horoscope.startedDateRange || monthDay <= horoscope.endedDateRange))) {
+            return horoscope._id as mongoose.Types.ObjectId;
+        }
+    }
+    return null; // Fallback in case no match is found
 }
 
+/**
+ * 
+ * @param this IUser object
+ * @description Calculate age from birthday
+ * @returns Age of user
+ */
+UserScheme.methods.calculateAge = function (this: IUser): number {
+    const today = new Date();
+    const birthDate = new Date(this.birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    return age;
+}
+
+/**
+ * @description Generate reset password token
+ * @returns Reset password token
+ */
 UserScheme.methods.getResetPasswordTokenFromUser = function () {
     const randomHexString = crypto.randomBytes(16).toString("hex")
     const resetPasswordToken = crypto

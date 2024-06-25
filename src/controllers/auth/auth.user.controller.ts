@@ -53,6 +53,16 @@ const registerUser = async (req: Request, res: Response) => {
         const token = user.generateJwtFromUser();
         user.token = token;
 
+        /// Find user horoscope from birthday and add it to user object
+        const horoscope = await user.findUserHoroscope();
+        if (horoscope) {
+            user.horoscope = horoscope;
+        }
+
+        /// Calculate age from birthday
+        const age = user.calculateAge();
+        user.age = age;
+
         await user.save();
 
         return res
